@@ -29,3 +29,8 @@ f(n) = f(n-1) + f(n-2)
 于是其时间复杂度为 O(n^2)（原因是大数加法）
 
 并且，如果通过通项公式求解，时间复杂度为 O(1)
+
+------
+
+wikipedia 上找到的起源：
+The Fibonacci sequence appears in Indian mathematics, in connection with Sanskrit prosody.[8][13] In the Sanskrit tradition of prosody, there was interest in enumerating all patterns of long (L) syllables that are 2 units of duration, and short (S) syllables that are 1 unit of duration. Counting the different patterns of L and S of a given duration results in the Fibonacci numbers
