@@ -8,7 +8,7 @@ public:
                 for (string word : wordDict)
                     if (s.substr(i,word.size())==word)
                         v[i+word.size()] = true;
-            /* A reverse version with the same time complexity O(mn):
+            /* A reversed view with the same time complexity O(mn):
             for (string word : wordDict){
                 int len = word.size();
                 int pos = i - len +1 ;
