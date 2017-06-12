@@ -1,4 +1,4 @@
-// DP. O(mn) time. O(m) space
+// DP. O(mn) time. O(n) space
 //
 // f(i,j) = f(i-1,j) , T[j] =/= S[i]
 //          f(i-1,j-1) + f(i-1,j) , T[j] == S[i]
@@ -14,19 +14,13 @@ using std::string;
 class Solution {
 public:
     int numDistinct(string s, string t) {
-        int s_len = s.size();
-        int t_len = t.size();
-        vector<int> f(s_len,1);
-        int tmp1 = 1, tmp2;
-        for (int j = 0; j<t_len; ++j){
-            for (int i=0; i<s_len; ++i){
-                tmp2 = f[i];
-                f[i] = (i==0 ? 0 : f[i-1]) + (s[i]==t[j] ? tmp1 : 0);
-                tmp1 = tmp2;
-            }
-            tmp1 = 0;  // 之前忘了加这一句
-        }
-        return f[s_len-1];
+        vector<int> f(t.size()+1,0);
+        f[0]=1;
+        for (int i = 0; i<s.size(); ++i)
+            for (int j= t.size() -1; j>=0; --j)  // 注意这里是反着去加的，避免元素相同时产生的干扰
+                if (t[j] == s[i])
+                    f[j+1] += f[j];
+        return f[t.size()];
     }
 };
 
