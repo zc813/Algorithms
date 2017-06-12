@@ -8,7 +8,8 @@ public:
                 for (string word : wordDict)
                     if (s.substr(i,word.size())==word)
                         v[i+word.size()] = true;
-            /* A reversed view with the same time complexity O(mn):
+        /* A reversed view with the same time complexity O(mn):
+        for (int i = 0; i<s.size(); ++i)
             for (string word : wordDict){
                 int len = word.size();
                 int pos = i - len +1 ;
@@ -17,7 +18,8 @@ public:
                     break;
                 }
             }*/
-            /* O(m*n^2):
+        /* O(m*n^2):
+        for (int i = 0; i<s.size(); ++i)
             for (int j = 0; j <= i; ++j)
                 if (v[j] && find(wordDict.begin(), wordDict.end(), s.substr(j,i-j+1)) != wordDict.end()){
                     v[i+1] = true;
