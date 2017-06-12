@@ -1,3 +1,6 @@
+// 巨慢，本来以为是 O(m x n)，结果要慢很多。特别是数据量较大的时候。
+// 这个方案从开始到放弃花了将近 3h，中间尝试过各种方法，还花了很多时间 debug。
+
 #include <iostream>
 #include <vector>
 #include <string>
