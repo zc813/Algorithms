@@ -3,6 +3,7 @@
 // F(0, i) = min(F(0, j) + 1), 其中 F(i,j) = 1
 // 我先用一个字典保存了从任意 ai 经 1 步可直接达到的 indices
 // 然后用地推来拓展 F(0,i) ，直到获取到 F(0,end) 为止
+// 这个其实就是广度优先搜索啊
 
 class Solution {
 private:
@@ -41,7 +42,7 @@ public:
         // 根据 t 循环，查找能令 F(0，i) = t 的所有 i
         int t = 2;
         bool changed = true;
-        set<int> changes, changes_new;
+        set<int> changes, changes_new;  // 可以用 queue 来做
         for (int p : dict[0]){
             route[p] = t;
             changes.insert(p);
@@ -49,7 +50,7 @@ public:
         for (; route[end] == 0; ++t, changes = changes_new, changes_new.clear()){
             for (int l : changes){
                 for (int p : dict[l])
-                    if (route[p] == 0 || route[p] > t + 1){
+                    if (route[p] == 0 || route[p] > t + 1){ // 亦可以用 visited 的 unordered_set 来标记是否访问过
                         route[p] = t+1;
                         changes_new.insert(p);
                     }
