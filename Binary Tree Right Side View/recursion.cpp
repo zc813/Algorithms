@@ -10,14 +10,14 @@
 class Solution {
 private:
     vector<int> result;
-    int level = 1;
-    void addChild(TreeNode* root){
+    //int level = 1;
+    void addChild(TreeNode* root, int level = 1){
         if (!root) return;       
         if (level > result.size()) result.push_back(root -> val);
-        ++level;
-        addChild(root->right);
-        addChild(root->left);
-        --level;        
+        //++level;
+        addChild(root->right, level+1);
+        addChild(root->left, level+1);
+        //--level;        
         /*
         if (addChild(root->right) || addChild(root->left)){
             --level;
