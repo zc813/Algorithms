@@ -7,6 +7,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+// 既可以用 DFS 来理解，又可以用 DAC 来理解。
 class Solution {
 private:
     vector<int> result;
