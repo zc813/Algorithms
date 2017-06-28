@@ -22,10 +22,8 @@ public:
     		s[p-1] = s_og[p>>1];
     	}
 	    
-    	int i = 0;
-    	int mr = 0;
-    	int pos = 0;
-    	int max_i = 0;
+    	int i = 0, max_i = 0;
+    	int mr = 0, pos = 0;
     	vector<int> rl(s.size());
         for (; i<s.size(); ++i){
         	if (i >= mr || i + rl[2*pos-i] >= mr){
