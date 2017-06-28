@@ -38,3 +38,4 @@ int main(){
 	cout << sol.isMatch(s,ex) << '\n';
 	return 0;
 }
+ 
