@@ -13,13 +13,15 @@ class Solution {
 private:
 
 public:
-    string longestPalindrome(string s) {
-    	if (s=="") return s;
-    	s.resize(s.size()*2);
+    string longestPalindrome(string s_og) {
+    	if (s_og=="") return "";
+    	string s;
+    	s.resize(s_og.size()*2);
     	for (int p = s.size()-1; p >=0; p -= 2){
     		s[p] = '\127';
-    		s[p-1] = s[p>>1];
+    		s[p-1] = s_og[p>>1];
     	}
+	    
     	int i = 0;
     	int mr = 0;
     	int pos = 0;
@@ -37,13 +39,9 @@ public:
         	} else
         		rl[i] = rl[2*pos-i];
         }
-        if (s[max_i+rl[max_i]] == '\127') --rl[max_i];
-        string res(s.substr(max_i-rl[max_i],rl[max_i] * 2 + 1));
-        string res_f;
-        res_f.resize((res.size()+1)/2);
-        for (int i = 0; i<res.size(); i+=2)
-        	res_f[i/2] = res[i];
-        return res_f;
+
+	if (s[max_i+rl[max_i]] == '\127') --rl[max_i];
+        return s_og.substr(max_i/2-rl[max_i]/2,rl[max_i]+1);
     }
 
 	string solve(string& s){
