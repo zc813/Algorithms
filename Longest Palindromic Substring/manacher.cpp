@@ -43,10 +43,6 @@ public:
 	if (s[max_i+rl[max_i]] == '\127') --rl[max_i];
         return s_og.substr(max_i/2-rl[max_i]/2,rl[max_i]+1);
     }
-
-	string solve(string& s){
-		return longestPalindrome(s);
-	}
 };
 
 int main(){
@@ -55,6 +51,6 @@ int main(){
 	string s;
 	cin >> s;
 
-	cout << sol.solve(s) << '\n';
+	cout << sol.longestPalindrome(s) << '\n';
 	return 0;
 }
