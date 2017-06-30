@@ -2,24 +2,24 @@
 
 class MinStack {
 private:
-    vector<int> stack_, stack_min_;
+    stack<int> stack_, stack_min_;
 public:
     void push(int x) {
-        stack_.push_back(x);
-        stack_min_.push_back(stack_min_.empty()||x<stack_min_.back() ? x : stack_min_.back()); // 此处注意考虑 stack_min_ 为空的情况
+        stack_.push(x);
+        stack_min_.push(stack_min_.empty()||x<stack_min_.top() ? x : stack_min_.top()); // 此处注意考虑 stack_min_ 为空的情况
     }
     
     void pop() {
         if (stack_.empty()) return;
-        stack_.pop_back();
-        stack_min_.pop_back();
+        stack_.pop();
+        stack_min_.pop();
     }
     
     int top() {
-        return stack_.back();
+        return stack_.top();
     }
     
     int getMin() {
-        return stack_min_.back();
+        return stack_min_.top();
     }
 };
