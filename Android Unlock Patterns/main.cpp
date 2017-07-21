@@ -10,6 +10,7 @@ private:
 	int edge;
 
 	int dfs(vector<bool> available, int m, int n, int path_len, int prev){
+		// 这里原先还用了一个 vector<int> path，其实没有必要，和 available 重复了，故去之。
 		if (path_len > n) return 0;
 		if (path_len == n) return 1;
 		int sum = 0;
@@ -37,7 +38,7 @@ private:
 			|| y1 == y2 && (x1-x2>1 || x2-x1>1)
 			|| (x1-x2>1 || x2-x1>1) && (y1-y2>1 || y2-y1>1))
 			return index((x1+x2)/2, (y1+y2)/2);*/
-    if ( x1 - x2 % 2 == 0 && y1 - y2 % 2 == 0)
+    		if ( x1 - x2 % 2 == 0 && y1 - y2 % 2 == 0)
 			return index((x1+x2)/2, (y1+y2)/2);
 		return -1;
 	}
