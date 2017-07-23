@@ -1,4 +1,4 @@
-// 根据主定理，时间复杂度为 Ω(log(mn)) O((mn)^(3/4))
+// 根据主定理，时间复杂度为 Ω(log(mn)) ~ O((mn)^(3/4)) (worst case)
 
 class Solution {
 private:
