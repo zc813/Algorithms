@@ -1,3 +1,5 @@
+// 根据主定理，时间复杂度为 Ω(log(mn)) O((mn)^(3/4))
+
 class Solution {
 private:
     bool inArea(vector<vector<int> >& matrix, int target, int x1, int y1, int x2, int y2){
