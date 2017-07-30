@@ -1,4 +1,5 @@
-// Two implementations of quicksort
+// Two implementations of Quicksort
+// One implementation of Heapsort
 //
 // Zhenbang Chen
 // Sat, Jul 29
@@ -6,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <functional>
 
 using std::vector;
 
@@ -67,6 +69,41 @@ void quicksort2(It begin, It end){
 	}
 }
 
+template<typename T>
+void heapsort(vector<T>& nums){
+	auto swap = [&nums](size_t a, size_t b){
+		T tmp (nums[a]);
+		nums[a] = nums[b];
+		nums[b] = tmp;
+	};
+
+	std::function<void(size_t,size_t)> SiftDown;
+	SiftDown = [&nums, &swap, &SiftDown](size_t index, size_t size){
+		if ( index >= size || index*2+1 >= size ) return;
+		if (index*2+2 >= size){
+			if (nums[index] < nums[index*2+1])
+				swap(index, index*2+1);
+			return;
+		}
+		if ( nums[index] < nums[index * 2 + 1] || nums[index] < nums[index * 2 + 2] ){
+			if (nums[ index*2+1 ] > nums[ index*2+2 ]){
+				swap(index, index*2+1);
+				SiftDown(index*2+1, size);
+			} else {
+				swap(index, index*2+2);
+				SiftDown(index*2+2, size);
+			}
+		}
+	};
+
+	for (size_t i = nums.size()/2; i>0; --i)
+		SiftDown(i-1, nums.size());
+	for (size_t i = nums.size(); i>0; --i){
+		swap(0, i-1);
+		SiftDown(0, i-1);
+	}
+}
+
 void getRandomNumbers(vector<int>& v, int num, int lo, int hi){
 	v.reserve(num);
 	for(int i = 0; i < num; ++i){
@@ -99,7 +136,8 @@ int main(){
 
 	sort(v.begin(),v.end());
 	//quicksort2(v1.begin(),v1.end());
-	quicksort(v1,0,v1.size()-1);
+	// quicksort(v1,0,v1.size()-1);
+	heapsort(v1);
 
 	std::cout << compare(v.begin(),v.end(),v1.begin(),v1.end());
 
