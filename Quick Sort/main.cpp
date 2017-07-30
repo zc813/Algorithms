@@ -79,20 +79,18 @@ void heapsort(vector<T>& nums){
 
 	std::function<void(size_t,size_t)> SiftDown;
 	SiftDown = [&nums, &swap, &SiftDown](size_t index, size_t size){
-		if ( index >= size || index*2+1 >= size ) return;
-		if (index*2+2 >= size){
-			if (nums[index] < nums[index*2+1])
-				swap(index, index*2+1);
-			return;
-		}
-		if ( nums[index] < nums[index * 2 + 1] || nums[index] < nums[index * 2 + 2] ){
-			if (nums[ index*2+1 ] > nums[ index*2+2 ]){
-				swap(index, index*2+1);
-				SiftDown(index*2+1, size);
-			} else {
-				swap(index, index*2+2);
-				SiftDown(index*2+2, size);
-			}
+		size_t child, larger;
+		while ((child = index*2+1) < size){
+			larger = index;
+
+			if ( nums[index] < nums[child] )
+				larger = child;
+			if ( child + 1 < size && nums[larger] < nums[child+1] )
+				larger = child + 1;
+			if ( larger == index )
+				break;
+			swap(index, larger);
+			index = larger;
 		}
 	};
 
