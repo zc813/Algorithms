@@ -102,6 +102,13 @@ void heapsort(vector<T>& nums){
 	}
 }
 
+template<typename T>
+void heapsortstl(vector<T>& nums){
+	make_heap(nums.begin(), nums.end());
+	for (auto iter = nums.end(); iter != nums.begin(); --iter)
+		pop_heap(nums.begin(), iter);
+}
+
 void getRandomNumbers(vector<int>& v, int num, int lo, int hi){
 	v.reserve(num);
 	for(int i = 0; i < num; ++i){
@@ -135,7 +142,7 @@ int main(){
 	sort(v.begin(),v.end());
 	//quicksort2(v1.begin(),v1.end());
 	// quicksort(v1,0,v1.size()-1);
-	heapsort(v1);
+	heapsortstl(v1);
 
 	std::cout << compare(v.begin(),v.end(),v1.begin(),v1.end());
 
